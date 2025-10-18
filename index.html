@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standen Sayings</title>
+  <style>
+    
+    body {
+      font-family: sans-serif;
+      background: #fffbea;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    h1 { 
+      text-align: center; 
+    }
+    input, textarea {
+      width: auto;
+      padding: 8px;
+      margin: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 15px; 
+      background: #ffce54; 
+      border: none; 
+      border-radius: 6px; 
+      cursor: pointer; 
+      font-weight: bold; 
+      width: auto; 
+    }
+    .quote {
+      background: #fff3cd; 
+      border-left: 4px solid #ffce54;
+      padding: 10px; 
+      margin: 10px 0; 
+      border-radius: 4px;
+    }
+    .main {
+      background-color: white;
+      border: solid 4px rgb(225, 37, 121);
+      border-radius: 10px;
+      padding: 20px 20px 40px 20px;
+      margin: 20px;
+    }
+    #quoteForm {
+      display: grid;
+      align-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+  <h1>🪦⚰️ Standen Sayings ⚰️🪦</h1>
+
+  <form id="quoteForm">
+    <input id="name" placeholder="Who said it?" required><br>
+    <textarea id="quote" placeholder="What did they say?" required></textarea><br>
+    <button type="submit">Submit</button>
+  </form>
+  </div>
+
+  <div id="quotesList"></div>
+  <script>
+    
+    const API_URL = "https://script.google.com/macros/s/AKfycbzmwLe8lns5Lyi9yazN3pbI9_kgj8wAOQYQIgCWB1LINA_yXgirAfh28J0f8Vz9LrrTXQ/exec"; // Replace this
+
+    async function fetchQuotes() {
+      const res = await fetch(API_URL);
+      const data = await res.json();
+      const list = document.getElementById("quotesList");
+      list.innerHTML = data.reverse().map(q => 
+        `<div class='quote'><strong>${q.name}:</strong> ${q.quote}</div>`
+      ).join("");
+    }
+
+    document.getElementById("quoteForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const quote = document.getElementById("quote").value.trim();
+      if (!name || !quote) return;
+
+      await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify({ name, quote }),
+        headers: { "Content-Type": "application/json" }
+      });
+
+      document.getElementById("quoteForm").reset();
+      fetchQuotes();
+    });
+
+    fetchQuotes();
+  </script>
+</body>
+</html>
