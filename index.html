@@ -66,7 +66,7 @@
   <div id="quotesList"></div>
   <script>
     
-    const API_URL = "https://script.google.com/macros/s/AKfycbzmwLe8lns5Lyi9yazN3pbI9_kgj8wAOQYQIgCWB1LINA_yXgirAfh28J0f8Vz9LrrTXQ/exec"; // Replace this
+    const API_URL = "https://script.google.com/macros/s/AKfycbzx_f7pXF-3nZCs7cKtjp-Xr6hRsmDnAzM7bGEvZGUL8xTLxkEumHTZc07T4T7d_I2Few/exec"; // Replace this
 
     async function fetchQuotes() {
       const res = await fetch(API_URL);
@@ -168,11 +168,14 @@
       const quote = document.getElementById("quote").value.trim();
       if (!name || !quote) return;
 
-      await fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify({ name, quote }),
-        headers: { "Content-Type": "application/json" }
-      });
+      await fetch(`https://corsproxy.io/?${encodeURIComponent(API_URL)}`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({ name, quote }),
+});
+
 
       document.getElementById("quoteForm").reset();
       fetchQuotes();
