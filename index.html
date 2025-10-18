@@ -6,77 +6,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Standen Sayings</title>
   <style>
+    /* ---------- Base Layout ---------- */
     body {
       font-family: sans-serif;
       background: #fffbea;
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
+      margin: 0;
+      padding: 5vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    h1 {
+    h1,
+    h2 {
       text-align: center;
+      margin-top: 0;
     }
 
+    /* ---------- Form Elements ---------- */
     input,
     textarea {
-      width: auto;
-      padding: 8px;
-      margin: 5px;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      margin: 8px 0;
       border-radius: 6px;
       border: 1px solid #ccc;
+      font-size: 1rem;
     }
 
     button {
-      padding: 10px 15px;
+      padding: 12px 18px;
       background: #ffce54;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
-      width: auto;
+      width: 100%;
+      font-size: 1rem;
+      transition: background 0.2s ease;
     }
 
+    button:hover {
+      background: #ffb347;
+    }
+
+    /* ---------- Quotes ---------- */
     .quote {
       background: #fff3cd;
       border-left: 4px solid #ffce54;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 4px;
+      padding: 3vw;
+      margin: 3vw 0;
+      border-radius: 8px;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      line-height: 1.4;
     }
 
+    /* ---------- Main Box ---------- */
     .main {
       background-color: white;
-      height: 60%;
       border: solid 4px rgb(225, 37, 121);
       border-radius: 10px;
-      padding: 20px 20px 40px 20px;
+      padding: 5vw;
+      max-width: 600px;
+      box-sizing: border-box;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
+    /* ---------- Flower Border ---------- */
+    /* ---------- Flower Border (around the input area) ---------- */
     .border {
-      position: relative;
-      padding: 20px;
-      background-image:
-        url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/flower.png"),
-        url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/flower.png"),
-        url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/flower.png"),
-        url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/flower.png");
-      background-repeat: round, round, round, round;
-      background-position: top left, top right, bottom left, top left;
-      background-size: 30px 30px;
+      background: url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/flower.png") repeat;
+      background-size: 60px;
+      /* adjust this for density */
+      padding: 40px;
+      /* space between border and content */
+      border-radius: 10px;
+      box-sizing: border-box;
     }
+
+    /* ---------- Sunflower Border (around the quotes section) ---------- */
+    .quotesborder {
+      background: url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/sunflower.png") repeat;
+      background-size: 60px;
+      padding: 40px;
+      border-radius: 10px;
+      box-sizing: border-box;
+      margin-top: 30px;
+    }
+
+
     #quoteForm {
       display: grid;
       align-content: center;
+      gap: 10px;
+    }
+
+    /* ---------- Quotes Container ---------- */
+    .quotescontainer {
+      border: solid 4px #9b26c9;
+      background-color: white;
+      border-radius: 10px;
+      padding: 4vw;
+      max-width: 600px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      max-width: 600px;
+    }
+
+    /* ---------- Responsive Tweaks ---------- */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .main,
+      .quotescontainer {
+        padding: 6vw;
+      }
+
+      button {
+        font-size: 0.95rem;
+        padding: 10px;
+      }
+
+      .border,
+      .quotesborder {
+        background-size: 40px;
+        /* slightly bigger tiles on small screens */
+        padding: 25px;
+        /* thinner border spacing */
+      }
     }
   </style>
 </head>
 
 <body>
+  <h1>🪦⚰️ Standen Sayings ⚰️🪦</h1>
   <div class="border">
     <div class="main">
-      <h1>🪦⚰️ Standen Sayings ⚰️🪦</h1>
-
+     <h2>Post a quote</h2>
       <form id="quoteForm">
         <input id="name" placeholder="Who said it?" required><br>
         <textarea id="quote" placeholder="What did they say?" required></textarea><br>
@@ -84,10 +153,14 @@
       </form>
     </div>
   </div>
-
-  <div id="quotesList"></div>
+  <div class="quotesborder">
+    <div class="quotescontainer">
+      <h3>She said what????</h3>
+      <div id="quotesList"></div>
+    </div>
+  </div>
   <script>
-  const API_URL = "https://script.google.com/macros/s/AKfycbw6oGN7NozLRVRuGD-MoBuMJGIhi4OP0SRCHENV5QvKjGPFHk9cWzC5F7axoCyVlBCHxA/exec";
+    const API_URL = "https://script.google.com/macros/s/AKfycbw6oGN7NozLRVRuGD-MoBuMJGIhi4OP0SRCHENV5QvKjGPFHk9cWzC5F7axoCyVlBCHxA/exec";
 
   async function fetchQuotes() {
     const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(API_URL)}`);
@@ -116,7 +189,8 @@
   });
 
   fetchQuotes();
-</script>
+  </script>
 
 </body>
+
 </html>
