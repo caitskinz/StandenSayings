@@ -18,7 +18,8 @@
     }
 
     h1,
-    h2 {
+    h2,
+    h3 {
       text-align: center;
       margin-top: 0;
     }
@@ -76,24 +77,24 @@
     /* ---------- Flower Border ---------- */
     /* ---------- Flower Border (around the input area) ---------- */
     .border {
-      background: url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/flower.png") repeat;
-      background-size: 60px;
-      /* adjust this for density */
-      padding: 40px;
-      /* space between border and content */
-      border-radius: 10px;
-      box-sizing: border-box;
-    }
+  background: url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/flower.png");
+  background-repeat: round;
+  background-size: clamp(40px, 6vw, 80px);
+  padding: clamp(30px, 5vw, 60px);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
 
-    /* ---------- Sunflower Border (around the quotes section) ---------- */
-    .quotesborder {
-      background: url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/sunflower.png") repeat;
-      background-size: 60px;
-      padding: 40px;
-      border-radius: 10px;
-      box-sizing: border-box;
-      margin-top: 30px;
-    }
+.quotesborder {
+  background: url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/sunflower.png");
+  background-repeat: round;
+  background-size: clamp(40px, 6vw, 80px);
+  padding: clamp(30px, 5vw, 60px);
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-top: 30px;
+}
+
 
 
     #quoteForm {
