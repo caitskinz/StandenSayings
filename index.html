@@ -87,34 +87,35 @@
 
   <div id="quotesList"></div>
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbzx_f7pXF-3nZCs7cKtjp-Xr6hRsmDnAzM7bGEvZGUL8xTLxkEumHTZc07T4T7d_I2Few/exec"; // Replace this
+  const API_URL = "https://script.google.com/macros/s/AKfycbw6oGN7NozLRVRuGD-MoBuMJGIhi4OP0SRCHENV5QvKjGPFHk9cWzC5F7axoCyVlBCHxA/exec";
 
-    async function fetchQuotes() {
-      const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(API_URL)}`);
-      const data = await res.json();
-      const list = document.getElementById("quotesList");
-      list.innerHTML = data.reverse().map(q =>
-        `<div class='quote'><strong>${q.name}:</strong> ${q.quote}</div>`
-      ).join("");
-    }
+  async function fetchQuotes() {
+    const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(API_URL)}`);
+    const data = await res.json();
+    const list = document.getElementById("quotesList");
+    list.innerHTML = data.reverse().map(q =>
+      `<div class='quote'><strong>${q.name}:</strong> ${q.quote}</div>`
+    ).join("");
+  }
 
-    document.getElementById("quoteForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const quote = document.getElementById("quote").value.trim();
-      if (!name || !quote) return;
+  document.getElementById("quoteForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const quote = document.getElementById("quote").value.trim();
+    if (!name || !quote) return;
 
-      await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(API_URL)}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, quote }),
-      });
-
-      document.getElementById("quoteForm").reset();
-      fetchQuotes();
+    await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(API_URL)}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, quote }),
     });
 
+    document.getElementById("quoteForm").reset();
     fetchQuotes();
-    </script>
+  });
+
+  fetchQuotes();
+</script>
+
 </body>
 </html>
