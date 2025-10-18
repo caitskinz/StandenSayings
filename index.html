@@ -56,8 +56,8 @@
     .quote {
       background: #fff3cd;
       border-left: 4px solid #ffce54;
-      padding: 3vw;
-      margin: 3vw 0;
+      padding: 10px;
+      margin: 10px 0;
       border-radius: 8px;
       font-size: clamp(0.9rem, 2.5vw, 1.1rem);
       line-height: 1.4;
@@ -68,7 +68,7 @@
       background-color: white;
       border: solid 4px rgb(225, 37, 121);
       border-radius: 10px;
-      padding: 5vw;
+      padding: 30px;
       max-width: 600px;
       box-sizing: border-box;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -77,25 +77,23 @@
     /* ---------- Flower Border ---------- */
     /* ---------- Flower Border (around the input area) ---------- */
     .border {
-  background: url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/flower.png");
-  background-repeat: round;
-  background-size: clamp(40px, 6vw, 80px);
-  padding: clamp(30px, 5vw, 60px);
-  border-radius: 10px;
-  box-sizing: border-box;
-}
+      background: url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/flower.png");
+      background-repeat: round;
+      background-size: clamp(40px, 6vw, 80px);
+      padding: clamp(30px, 5vw, 60px);
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
 
-.quotesborder {
-  background: url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/sunflower.png");
-  background-repeat: round;
-  background-size: clamp(40px, 6vw, 80px);
-  padding: clamp(30px, 5vw, 60px);
-  border-radius: 10px;
-  box-sizing: border-box;
-  margin-top: 30px;
-}
-
-
+    .quotesborder {
+      background: url("https://raw.githubusercontent.com/caitskinz/StandenSayings/refs/heads/main/sunflower.png");
+      background-repeat: round;
+      background-size: clamp(40px, 6vw, 80px);
+      padding: clamp(30px, 5vw, 60px);
+      border-radius: 10px;
+      box-sizing: border-box;
+      margin-top: 30px;
+    }
 
     #quoteForm {
       display: grid;
@@ -108,9 +106,8 @@
       border: solid 4px #9b26c9;
       background-color: white;
       border-radius: 10px;
-      padding: 4vw;
+      padding: 20px 15px 20px 15px;
       max-width: 600px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       box-sizing: border-box;
       max-width: 600px;
     }
@@ -146,7 +143,7 @@
   <h1>🪦⚰️ Standen Sayings ⚰️🪦</h1>
   <div class="border">
     <div class="main">
-     <h2>Post a quote</h2>
+      <h2>Post a quote</h2>
       <form id="quoteForm">
         <input id="name" placeholder="Who said it?" required><br>
         <textarea id="quote" placeholder="What did they say?" required></textarea><br>
