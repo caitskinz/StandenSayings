@@ -104,11 +104,12 @@
     const quote = document.getElementById("quote").value.trim();
     if (!name || !quote) return;
 
-    await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(API_URL)}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, quote }),
-    });
+    await fetch(`https://corsproxy.io/?${encodeURIComponent(API_URL)}`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ name, quote }),
+});
+
 
     document.getElementById("quoteForm").reset();
     fetchQuotes();
